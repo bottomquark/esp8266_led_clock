@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Uhr</title>
+</head>
+<body style="text-align:left;">
+<script src="static/jscolor.js"></script>
+
+<form action="/">
+    <p>
+
+    {% for value in colorvalues %}
+      {{value[0]}}: <input name="{{value[1]}}" class="jscolor" value="{{ value[2] }}"> </br>
+    {% endfor %}
+
+    Helligkeit: <input name="brightness" type="number" min="0" max="255" step="1" value="{{ brightness }}" /> </br>
+    Helligkeit überschreiben?  <input type="checkbox" name="brightness_override" value="override" {% if brightness_override %} checked="checked" {% endif %}> </br>
+    Minimale Helligkeit: <input id="min_brightness" name="min_brightness" type="number" min="0" max="225" step="1" value="{{ min_brightness }}"> </br>
+
+    </p>
+    
+    <input type="submit">
+
+  {% if messages %}
+    <ul class=flashes>
+    {% for key, value in messages.iteritems() %}
+    <li>{{ key }}: {{ value }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+
+</form>
+</body>
+</html>
